@@ -1,6 +1,6 @@
-
-
+mod fundamentos;
 
 fn main() {
-    println!("Hello, world!");
+    fundamentos::executar();
+    println!("Fim do programa!");
 }

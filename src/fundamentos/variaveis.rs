@@ -1,3 +1,3 @@
-pub fn exec() {
-    println!("Exec!");
+pub fn executar() {
+    println!("Variáveis em Rust!");
 }
