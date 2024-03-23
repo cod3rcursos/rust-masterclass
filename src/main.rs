@@ -1,22 +1,21 @@
+mod controle;
 mod fundamentos;
 mod utils;
 
 use std::process::exit;
-use utils::terminal::{esperar_enter, exibir_menu, limpar_tela};
+use utils::terminal::{exibir_menu, limpar_tela};
 
 fn main() {
     loop {
-        let itens = vec!["Fundamentos", "Sair"];
-        let opcao = exibir_menu(itens);
+        let itens = ["Fundamentos", "Controle"];
+        let selecionado = exibir_menu("Principal", &itens, true);
 
         limpar_tela();
 
-        match opcao {
+        match selecionado {
             1 => fundamentos::executar(),
-            2 => exit(0),
-            _ => println!("Opção inválida!"),
+            2 => controle::executar(),
+            _ => exit(0),
         }
-
-        esperar_enter();
     }
 }

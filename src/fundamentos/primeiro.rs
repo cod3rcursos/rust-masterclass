@@ -1,3 +1,3 @@
-pub fn executar() {
+pub fn exemplo() {
     println!("Primeiro código em Rust!");
 }

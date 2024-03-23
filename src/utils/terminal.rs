@@ -1,40 +1,38 @@
-use rpassword::read_password;
+use rpassword::prompt_password;
 use std::io::Write;
 
-pub fn exibir_menu(itens: Vec<&str>) -> u32 {
-    loop {
-        limpar_tela();
-        exibir_itens(&itens);
+pub fn exibir_menu(titulo: &str, itens: &[&str], sair: bool) -> u32 {
+    limpar_tela();
 
-        print!("Escolha uma opção: ");
-        std::io::stdout().flush().unwrap();
+    let completo = String::from("Masterclass Rust :: ") + titulo;
+    println!("{}", completo);
+    println!("{}", String::from("=").repeat(completo.len()));
 
-        let mut opcao = String::new();
-        std::io::stdin().read_line(&mut opcao).unwrap();
+    exibir_itens(itens);
 
-        let opcao: u32 = opcao.trim().parse().unwrap();
+    println!("{}", if sair { "* - Sair" } else { "* - Voltar" });
+    print!("\nEscolha uma opção: ");
+    std::io::stdout().flush().unwrap();
 
-        if opcao > 0 && opcao <= itens.len() as u32 {
-            return opcao;
-        } else if opcao == itens.len() as u32 + 1 {
-            return 0;
-        } else {
-            println!("Opção inválida!");
-        }
+    let mut linha = String::new();
+    std::io::stdin().read_line(&mut linha).unwrap();
+
+    let opcao: Result<u32, _> = linha.trim().parse();
+
+    match opcao {
+        Ok(opcao) => opcao,
+        _ => 0,
     }
 }
 
-fn exibir_itens(itens: &Vec<&str>) {
+fn exibir_itens(itens: &[&str]) {
     for (i, item) in itens.iter().enumerate() {
         println!("{} - {}", i + 1, item);
     }
 }
 
 pub fn esperar_enter() {
-    print!("Pressione ENTER para continuar...");
-    std::io::stdout().flush().unwrap();
-
-    read_password().unwrap();
+    prompt_password("Pressione ENTER para continuar...").unwrap();
 }
 
 pub fn limpar_tela() {
