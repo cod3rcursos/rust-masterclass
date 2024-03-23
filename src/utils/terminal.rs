@@ -1,3 +1,4 @@
+use rpassword::read_password;
 use std::io::Write;
 
 pub fn exibir_menu(itens: Vec<&str>) -> u32 {
@@ -30,8 +31,10 @@ fn exibir_itens(itens: &Vec<&str>) {
 }
 
 pub fn esperar_enter() {
-    let mut enter = String::new();
-    std::io::stdin().read_line(&mut enter).unwrap();
+    print!("Pressione ENTER para continuar...");
+    std::io::stdout().flush().unwrap();
+
+    read_password().unwrap();
 }
 
 pub fn limpar_tela() {
