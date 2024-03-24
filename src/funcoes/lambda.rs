@@ -22,7 +22,7 @@ pub fn exemplo_filter() {
 
     let primos: Vec<i32> = (1..=10000)
         .filter(|&x| e_primo(x))
-        .filter(|&x| x.to_string().ends_with("7"))
+        .filter(|&x| x.to_string().ends_with('7'))
         .collect();
     println!("{:?}", primos);
 }

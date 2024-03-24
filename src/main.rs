@@ -1,6 +1,7 @@
 mod controle;
 mod funcoes;
 mod fundamentos;
+mod ownership;
 mod tipos;
 mod utils;
 
@@ -9,7 +10,7 @@ use utils::terminal::{exibir_menu, limpar_tela};
 
 fn main() {
     loop {
-        let itens = ["Fundamentos", "Tipos", "Controle", "Funções"];
+        let itens = ["Fundamentos", "Tipos", "Controle", "Funções", "Ownership"];
         let selecionado = exibir_menu("Principal", &itens, true);
 
         limpar_tela();
@@ -19,6 +20,7 @@ fn main() {
             2 => tipos::executar(),
             3 => controle::executar(),
             4 => funcoes::executar(),
+            5 => ownership::executar(),
             _ => exit(0),
         }
     }
